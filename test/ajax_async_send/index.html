@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button" onclick="updateUI('data.txt')">Button</button>
+    <script>
+      var container = document.getElementById('container');
+
+      function updateUI(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        setTimeout(function (req) {req.send();}, 100, xhr);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            container.innerHTML = xhr.responseText;
+          }
+        };
+      }
+    </script>
+  </body>
+</html>

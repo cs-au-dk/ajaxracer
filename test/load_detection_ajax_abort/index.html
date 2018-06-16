@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      var counter = 1;
+
+      function sendAjax(callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'data.txt', /*async=*/true);
+        xhr.send(null);
+
+        xhr.onabort = function (e) {
+          console.warn(counter++ + ': XHR aborted');
+        };
+
+        callback(xhr);
+      }
+
+      // The LoadMonitor should understand that the page has finished loading
+      // although no Ajax response event has arrived.
+      sendAjax(function (xhr) {
+        xhr.abort();
+      });
+    </script>
+  </body>
+</html>

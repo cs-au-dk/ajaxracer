@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+    <script src="script.js" integrity="sha256-QHxsDkWBNY6bP/dYtCI6TvDl85zJcnLnOSrvNo5XfuA="></script>
+  </head>
+  <body>
+    <script>
+      if (!window.scriptHasExecuted) {
+        throw new Error('Script with integrity-attribute should have been executed');
+      }
+    </script>
+  </body>
+</html>

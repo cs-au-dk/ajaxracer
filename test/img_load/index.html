@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      function updateUI() {
+        var img = new Image();
+        img.onload = function () {
+          container.appendChild(img);
+        };
+        img.src = 'image.png';
+      }
+
+      button.addEventListener('click', updateUI, false);
+    </script>
+  </body>
+</html>

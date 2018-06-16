@@ -1,0 +1,299 @@
+<h2>Benchmarks</h2>
+<p>Click on one of the benchmarks below to see the <span class="toolname">AjaxRacer</span> results.</p>
+<!--
+<p>
+  <label>
+    <input type="checkbox" (click)="toggleCollapse()">
+    Collapse similar runs
+  </label>
+</p>
+-->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th rowspan="3">ID</th>
+      <th rowspan="3">URL</th>
+      <th rowspan="2" colspan="5" class="text-center">Test Results</th>
+      <th colspan="10" class="text-center">Performance, average</th>
+      <th colspan="4" class="text-center">Performance, worst case</th>
+    </tr>
+    <tr>
+      <!-- Performance, average -->
+      <th colspan="3" class="text-center">Phase&nbsp;1</th>
+      <th class="text-center">Test&nbsp;planning</th>
+      <th colspan="6" class="text-center">Phase&nbsp;2</th>
+
+      <!-- Performance, worst case -->
+      <th class="text-center">Phase&nbsp;1</th>
+      <th class="text-center">Test&nbsp;planning</th>
+      <th colspan="2" class="text-center">Phase&nbsp;2</th>
+    </tr>
+    <tr>
+      <!-- Test Results -->
+      <th class="text-center">Planned</th>
+      <th class="text-center">Succeeding<br>(ignored&nbsp;pixel)</th>
+      <th class="text-center">Failing</th>
+      <th class="text-center">Infeasible</th>
+      <th class="text-center">Unexpected error</th>
+
+      <!-- Performance, average (Phase 1) -->
+      <th class="text-center">Loading</th>
+      <th class="text-center">Trace<br>generation</th>
+      <th class="text-center">Total</th>
+
+      <!-- Performance, average (Test planning) -->
+      <th class="text-center">Total</th>
+
+      <!-- Performance, average (Phase 2) -->
+      <th class="text-center">Loading</th>
+      <th class="text-center">Synchronous<br>mode</th>
+      <th class="text-center">Adverse<br>mode</th>
+      <th class="text-center">Report<br>generation</th>
+      <th class="text-center">Total<br>(est.&nbsp;parallel)</th>
+      <th class="text-center">Total<br>(sequential)</th>
+
+      <!-- Performance, worst case (Phase 1) -->
+      <th class="text-center">Total</th>
+
+      <!-- Performance, worst case (Test planning) -->
+      <th class="text-center">Total</th>
+
+      <!-- Performance, worst case (Phase 2) -->
+      <th class="text-center">Total<br>(est.&nbsp;parallel)</th>
+      <th class="text-center">Total<br>(sequential)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let benchmark of benchmarks">
+      <tr class="clickable"
+          routerLink="/benchmark/{{benchmark.runId}}/phase-1">
+        <td>
+          {{benchmark.id}}
+        </td>
+        <td style="border-right: 1px dotted #ddd">
+          {{benchmark.url}}
+        </td>
+
+        <!-- Test Results -->
+        <td class="text-center">
+          <p>{{benchmark.numTests || '-'}}</p>
+        </td>
+        <td class="text-center">
+          <p>
+            {{benchmark.numSucceedingTests || '-'}}
+            <span *ngIf="benchmark.numSucceedingTestsWithIgnoredPixels > 0">
+              ({{benchmark.numSucceedingTestsWithIgnoredPixels}})
+            </span>
+          </p>
+        </td>
+        <td class="text-center">
+          <p>{{benchmark.numFailingTests || '-'}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{benchmark.numInfeasibleTests || '-'}}</p>
+        </td>
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{benchmark.numErroneousTests || '-'}}</p>
+        </td>
+
+        <!-- Performance, average (Phase 1) -->
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(benchmark, ['msLoadingTimePhase1']))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(benchmark, ['msTraceGeneration']))}}</p>
+        </td>
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{formatTime(getTimingData(benchmark, ['msLoadingTimePhase1', 'msTraceGeneration']))}}</p>
+        </td>
+
+        <!-- Performance, average (Test planning) -->
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{formatTime(getTimingData(benchmark, ['msTestPlanning']), 1)}}</p>
+        </td>
+
+        <!-- Performance, average (Phase 2) -->
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(benchmark, ['msAverageLoadingTimePhase2']))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(benchmark, ['msAverageSynchronousModeExecutionTime']))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(benchmark, ['msAverageAdverseModeExecutionTime']))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(benchmark, ['msReportGeneration']))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(benchmark, ['msAverageLoadingTimePhase2', 'msAverageSynchronousModeExecutionTime', 'msAverageLoadingTimePhase2', 'msAverageAdverseModeExecutionTime', 'msReportGenerationPerTest']))}}</p>
+        </td>
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{formatTime(benchmark.numTests * getTimingData(benchmark, ['msAverageLoadingTimePhase2', 'msAverageSynchronousModeExecutionTime', 'msAverageLoadingTimePhase2', 'msAverageAdverseModeExecutionTime', 'msReportGenerationPerTest']))}}</p>
+        </td>
+
+        <!-- Performance, worst case (Phase 1) -->
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(benchmark, ['msPhase1WC']))}}</p>
+        </td>
+
+        <!-- Performance, worst case (Test planning) -->
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(benchmark, ['msTestPlanningWC']), 1)}}</p>
+        </td>
+
+        <!-- Performance, worst case (Phase 2) -->
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(benchmark, ['msPhase2ParallelWC']))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(benchmark, ['msPhase2SequentialWC']))}}</p>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+  <tfoot>
+    <tr style="border-top: 3px solid #fff">
+        <td><b>TOTAL</b></td>
+        <td style="border-right: 1px dotted #ddd"></td>
+
+        <!-- Test Results -->
+        <td class="text-center">
+          <p>{{getTestData('numTests', 0)}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{getTestData('numSucceedingTests', 0)}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{getTestData('numFailingTests', 0)}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{getTestData('numInfeasibleTests', 0)}}</p>
+        </td>
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{getTestData('numErroneousTests', 0)}}</p>
+        </td>
+
+        <!-- Performance, average (Phase 1) -->
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msLoadingTimePhase1'], 0, 0))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msTraceGeneration'], 0, 0))}}</p>
+        </td>
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{formatTime(getTimingData(null, ['msLoadingTimePhase1', 'msTraceGeneration'], 0, 0))}}</p>
+        </td>
+
+        <!-- Performance, average (Test planning) -->
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{formatTime(getTimingData(null, ['msTestPlanning'], 0, 0))}}</p>
+        </td>
+
+        <!-- Performance, average (Phase 2) -->
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msAverageLoadingTimePhase2'], 0, 0))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msAverageSynchronousModeExecutionTime'], 0, 0))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msAverageAdverseModeExecutionTime'], 0, 0))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msReportGeneration'], 0, 0))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msAverageLoadingTimePhase2', 'msAverageSynchronousModeExecutionTime', 'msAverageLoadingTimePhase2', 'msAverageAdverseModeExecutionTime', 'msReportGenerationPerTest'], 0, 0))}}</p>
+        </td>
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{formatTime(getTimingData(null, ['msAverageLoadingTimePhase2', 'msAverageSynchronousModeExecutionTime', 'msAverageLoadingTimePhase2', 'msAverageAdverseModeExecutionTime', 'msReportGenerationPerTest'], 1, 0))}}</p>
+        </td>
+
+        <!-- Performance, worst case -->
+        <td class="text-center">
+          <p>-</p>
+        </td>
+        <td class="text-center">
+          <p>-</p>
+        </td>
+        <td class="text-center">
+          <p>-</p>
+        </td>
+        <td class="text-center">
+          <p>-</p>
+        </td>
+    </tr>
+    <tr>
+        <td><b>AVERAGE</b></td>
+        <td style="border-right: 1px dotted #ddd"></td>
+
+        <!-- Test Results -->
+        <td class="text-center">
+          <p>{{formatAverage(getTestData('numTests', 1))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatAverage(getTestData('numSucceedingTests', 1))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatAverage(getTestData('numFailingTests', 1))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatAverage(getTestData('numInfeasibleTests', 1))}}</p>
+        </td>
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{formatAverage(getTestData('numErroneousTests', 1))}}</p>
+        </td>
+
+        <!-- Performance, average (Phase 1) -->
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msLoadingTimePhase1']))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msTraceGeneration']))}}</p>
+        </td>
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{formatTime(getTimingData(null, ['msLoadingTimePhase1', 'msTraceGeneration']))}}</p>
+        </td>
+
+        <!-- Performance, average (Test planning) -->
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{formatTime(getTimingData(null, ['msTestPlanning']))}}</p>
+        </td>
+
+        <!-- Performance, average (Phase 2) -->
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msAverageLoadingTimePhase2']))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msAverageSynchronousModeExecutionTime']))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msAverageAdverseModeExecutionTime']))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msReportGeneration']))}}</p>
+        </td>
+        <td class="text-center">
+          <p>{{formatTime(getTimingData(null, ['msAverageLoadingTimePhase2', 'msAverageSynchronousModeExecutionTime', 'msAverageLoadingTimePhase2', 'msAverageAdverseModeExecutionTime', 'msReportGenerationPerTest']))}}</p>
+        </td>
+        <td class="text-center" style="border-right: 1px dotted #ddd">
+          <p>{{formatTime(getTimingData(null, ['msAverageLoadingTimePhase2', 'msAverageSynchronousModeExecutionTime', 'msAverageLoadingTimePhase2', 'msAverageAdverseModeExecutionTime', 'msReportGenerationPerTest'], true))}}</p>
+        </td>
+
+        <!-- Performance, worst case -->
+        <td class="text-center">
+          <p>-</p>
+        </td>
+        <td class="text-center">
+          <p>-</p>
+        </td>
+        <td class="text-center">
+          <p>-</p>
+        </td>
+        <td class="text-center">
+          <p>-</p>
+        </td>
+    </tr>
+  </tfoot>
+</table>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      function updateUI() {
+        container.innerHTML = 'Lorem ipsum.';
+      }
+
+      button.addEventListener('click', function () {
+        var promise = new Promise(function (resolve, reject) {
+          reject();
+        });
+
+        promise.catch(updateUI);
+      }, false);
+    </script>
+  </body>
+</html>

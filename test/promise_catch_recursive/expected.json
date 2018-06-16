@@ -1,0 +1,126 @@
+{
+  "observationMode": {
+    "userEventListeners": [
+      {
+        "userEventListener": {
+          "staticId": "static-element-4",
+          "selector": "html > body > button#button",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "timer",
+            "u": 0,
+            "v": 1,
+            "delay": 250
+          },
+          {
+            "operation": "fork",
+            "kind": "promise-reject",
+            "u": 1,
+            "v": 2
+          },
+          {
+            "operation": "join",
+            "kind": "promise-catch-handler",
+            "u": 2,
+            "v": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "timer",
+            "u": 2,
+            "v": 3,
+            "delay": 250
+          },
+          {
+            "operation": "fork",
+            "kind": "promise-reject",
+            "u": 3,
+            "v": 4
+          },
+          {
+            "operation": "join",
+            "kind": "promise-catch-handler",
+            "u": 4,
+            "v": 2
+          },
+          {
+            "operation": "fork",
+            "kind": "timer",
+            "u": 4,
+            "v": 5,
+            "delay": 250
+          },
+          {
+            "operation": "fork",
+            "kind": "promise-reject",
+            "u": 5,
+            "v": 6
+          },
+          {
+            "operation": "join",
+            "kind": "promise-catch-handler",
+            "u": 6,
+            "v": 4
+          },
+          {
+            "operation": "fork",
+            "kind": "timer",
+            "u": 6,
+            "v": 7,
+            "delay": 250
+          },
+          {
+            "operation": "fork",
+            "kind": "promise-reject",
+            "u": 7,
+            "v": 8
+          },
+          {
+            "operation": "join",
+            "kind": "promise-catch-handler",
+            "u": 8,
+            "v": 6
+          },
+          {
+            "operation": "fork",
+            "kind": "timer",
+            "u": 8,
+            "v": 9,
+            "delay": 250
+          },
+          {
+            "operation": "fork",
+            "kind": "promise-reject",
+            "u": 9,
+            "v": 10
+          },
+          {
+            "operation": "join",
+            "kind": "promise-catch-handler",
+            "u": 10,
+            "v": 8
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 10
+          }
+        ]
+      }
+    ],
+    "logs": []
+  }
+}

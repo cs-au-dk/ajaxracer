@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      function sleep(delay) {
+        return new Promise(function (resolve, reject) {
+          window.setTimeout(reject, delay);
+        });
+      }
+
+      function updateUI() {
+        container.innerHTML = 'Lorem ipsum.';
+      }
+
+      button.addEventListener('click', function () {
+        function waitTimes(counter) {
+          if (counter === 0) {
+            updateUI();
+          } else {
+            return sleep(250).catch(function () {
+              return waitTimes(counter - 1);
+            });
+          }
+        }
+
+        waitTimes(5);
+      }, false);
+    </script>
+  </body>
+</html>

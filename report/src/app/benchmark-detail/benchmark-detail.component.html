@@ -1,0 +1,25 @@
+<div *ngIf="benchmark">
+  <h2>{{benchmark.name}}</h2>
+
+  <ul class="nav nav-tabs">
+    <li role="presentation" [ngClass]="{
+      'active': selectedPhase == 'phase-1',
+      'inactive': selectedPhase != 'phase-1'}">
+      <a routerLink="/benchmark/{{benchmark.id}}/phase-1"
+         (click)="selectPhase('phase-1')">
+        Phase 1
+      </a>
+    </li>
+    <li role="presentation" [ngClass]="{
+      'active': selectedPhase == 'phase-2',
+      'inactive': selectedPhase != 'phase-2'}">
+      <a routerLink="/benchmark/{{benchmark.id}}/phase-2"
+         (click)="selectPhase('phase-2')">
+        Phase 2
+      </a>
+    </li>
+  </ul>
+
+  <ajaxracer-phase-1 *ngIf="selectedPhase == 'phase-1'"></ajaxracer-phase-1>
+  <ajaxracer-phase-2 *ngIf="selectedPhase == 'phase-2'"></ajaxracer-phase-2>
+</div>

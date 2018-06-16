@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      function updateUI(text) {
+        container.innerHTML = text;
+      }
+
+      button.addEventListener('click', function () {
+        var promise = new Promise(function (resolve, reject) {
+          window.setTimeout(function() {
+            reject();
+          }, 250);
+        });
+
+        promise.catch(function () {
+          updateUI('Lorem ipsum.');
+        });
+        promise.catch(function () {
+          updateUI('Dolor sit.');
+        });
+      }, false);
+    </script>
+  </body>
+</html>

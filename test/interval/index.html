@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+      var numCalls = 0;
+
+      function updateUI() {
+          container.innerHTML = 'Lorem ipsum.';
+      }
+
+      button.addEventListener('click', function () {
+        var intervalId = window.setInterval(function () {
+          if (++numCalls == 3) {
+              updateUI();
+              window.clearInterval(intervalId);
+          }
+        }, 1000);
+
+        window.clearInterval(
+          window.setInterval(() => { throw new Error('Unexpected'); }, 1000));
+
+        var otherIntervalId =
+          window.setInterval(() => { throw new Error('Unexpected'); }, 1000);
+
+        window.setTimeout(() => window.clearInterval(otherIntervalId), 500);
+
+        window.setInterval(function () {
+          throw new Error('Unexpected');
+        }, 10000);
+      }, false);
+    </script>
+  </body>
+</html>

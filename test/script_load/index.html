@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+      var counter = 1;
+
+      function updateUI() {
+        var script = document.createElement('script');
+        script.src = 'script.js';
+        container.appendChild(script);
+        script.onload = function () {
+          alias.innerHTML = counter++ + ': Lorem ipsum.';
+          alias2().innerHTML = counter++ + ': Lorem ipsum.';
+        };
+      }
+
+      button.addEventListener('click', updateUI, false);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+{
+  "observationMode": {
+    "userEventListeners": [
+      {
+        "userEventListener": {
+          "staticId": "static-element-4",
+          "selector": "html > body > button#button",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "interval",
+            "u": 0,
+            "v": 1,
+            "delay": 1000
+          },
+          {
+            "operation": "fork",
+            "kind": "interval",
+            "u": 0,
+            "v": 2,
+            "delay": 1000
+          },
+          {
+            "operation": "cancel",
+            "u": 0,
+            "v": 2
+          },
+          {
+            "operation": "fork",
+            "kind": "interval",
+            "u": 0,
+            "v": 3,
+            "delay": 1000
+          },
+          {
+            "operation": "fork",
+            "kind": "timer",
+            "u": 0,
+            "v": 4,
+            "delay": 500
+          },
+          {
+            "operation": "cancel",
+            "u": 4,
+            "v": 3
+          },
+          {
+            "operation": "join",
+            "kind": "interval",
+            "u": 1,
+            "v": 0
+          },
+          {
+            "operation": "join",
+            "kind": "interval",
+            "u": 5,
+            "v": 1
+          },
+          {
+            "operation": "join",
+            "kind": "interval",
+            "u": 6,
+            "v": 5
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 6
+          },
+          {
+            "operation": "cancel",
+            "u": 6,
+            "v": 7
+          }
+        ]
+      }
+    ],
+    "logs": [
+      "Ignoring timer registration with delay=10000"
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+div.navbar { background: #000000; }
+div.navbar ul.nav { float: none; margin: 0 auto; width: fit-content; }
+div.navbar ul.nav a { color: #ffffff; font-variant: small-caps; font-weight: bold; }
+div.navbar ul.nav a:hover { color: #1997c6; }

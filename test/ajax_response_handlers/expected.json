@@ -1,0 +1,113 @@
+{
+  "observationMode": {
+    "userEventListeners": [
+      {
+        "userEventListener": {
+          "staticId": "static-element-6",
+          "selector": "html > body > button#button",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "ajax-request",
+            "u": 0,
+            "v": 1,
+            "method": "GET",
+            "url": "http://localhost:8080/test/ajax_response_handlers/data.txt"
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-headers-received",
+            "u": 1,
+            "v": 0
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-loading",
+            "u": 2,
+            "v": 1
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-progress",
+            "u": 4,
+            "v": 2
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container3",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 4
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-done",
+            "u": 3,
+            "v": 4
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 3
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-loaded",
+            "u": 5,
+            "v": 3
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container2",
+            "area": {
+              "x": 8,
+              "y": 26,
+              "width": 100,
+              "height": 18
+            },
+            "u": 5
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container3",
+            "area": {
+              "x": 8,
+              "y": 44,
+              "width": 100,
+              "height": 18
+            },
+            "u": 5
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container3",
+            "area": {
+              "x": 8,
+              "y": 44,
+              "width": 100,
+              "height": 18
+            },
+            "u": 5
+          }
+        ]
+      }
+    ],
+    "logs": []
+  }
+}

@@ -1,0 +1,1 @@
+callback('Lorem ipsum');

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <script>
+      var o = {
+        _p: null,
+        get p() { return this._p; },
+        set p(v) { this._p = v * 2; }
+      };
+
+      o.p = 21;
+
+      if (o.p !== 42) {
+        throw new Error('Expected o.p to be 42');
+      }
+
+      var descriptor = Object.getOwnPropertyDescriptor(o, 'p');
+      if (Object.getOwnPropertySymbols(descriptor.get).length === 0) {
+        throw new Error('Expected getter to be marked as non-native');
+      }
+      if (Object.getOwnPropertySymbols(descriptor.set).length === 0) {
+        throw new Error('Expected setter to be marked as non-native');
+      }
+    </script>
+  </body>
+</html>

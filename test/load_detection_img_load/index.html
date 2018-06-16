@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      function updateUI() {
+        container.innerHTML = 'Lorem ipsum.';
+      }
+
+      // The LoadMonitor should understand that the page has not finished
+      // loading until the variable `loaded` has been set to 2.
+      var loaded = 0;
+      var img = new Image();
+      img.onload = function () {
+        ++loaded;
+      };
+      img.src = 'image.png';
+
+      var img2 = new Image();
+      img2.onload = function () {
+        ++loaded;
+
+        var img3 = new Image();
+        img3.src = 'image.png';
+        img3.onload = function () {
+          ++loaded;
+        };
+      };
+      img2.src = 'image.png';
+
+      button.addEventListener('click', function () {
+        // If LoadMonitor has not waited for the relevant timers to fire,
+        // then `loaded` is going to be false, and then the test fails.
+        if (loaded === 3) {
+          updateUI();
+        }
+      }, false);
+    </script>
+  </body>
+</html>

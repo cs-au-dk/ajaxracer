@@ -1,0 +1,29 @@
+{
+  "observationMode": {
+    "userEventListeners": [
+      {
+        "userEventListener": {
+          "staticId": "static-element-4",
+          "selector": "html > body > button#button",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 0
+          }
+        ]
+      }
+    ],
+    "logs": [
+      "Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/."
+    ]
+  }
+}

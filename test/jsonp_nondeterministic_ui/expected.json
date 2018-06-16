@@ -1,0 +1,169 @@
+{
+  "observationMode": {
+    "userEventListeners": [
+      {
+        "userEventListener": {
+          "selector": "html > body > button#button",
+          "staticId": "static-element-4",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "load-script",
+            "u": 0,
+            "v": 1,
+            "url": "http://localhost:8080/test/jsonp_nondeterministic_ui/script1.js"
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          }
+        ]
+      },
+      {
+        "userEventListener": {
+          "selector": "html > body > button#button2",
+          "staticId": "static-element-5",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "load-script",
+            "u": 0,
+            "v": 1,
+            "url": "http://localhost:8080/test/jsonp_nondeterministic_ui/script2.js"
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          }
+        ]
+      }
+    ],
+    "logs": [
+      "callback: Lorem ipsum",
+      "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script1.js",
+      "callback: Dolor sit",
+      "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script2.js"
+    ]
+  },
+  "adverseMode": [
+    {
+      "id": "0-0",
+      "numPostponedEvents": 1,
+      "status": "SUCCESS",
+      "logs": [
+        "callback: Lorem ipsum",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script1.js"
+      ]
+    },
+    {
+      "id": "0-1",
+      "numPostponedEvents": 1,
+      "status": "SUCCESS",
+      "logs": [
+        "callback: Dolor sit",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script2.js",
+        "callback: Lorem ipsum",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script1.js"
+      ]
+    },
+    {
+      "id": "1-0",
+      "numPostponedEvents": 1,
+      "status": "SUCCESS",
+      "logs": [
+        "callback: Lorem ipsum",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script1.js",
+        "callback: Dolor sit",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script2.js"
+      ]
+    },
+    {
+      "id": "1-1",
+      "numPostponedEvents": 1,
+      "status": "SUCCESS",
+      "logs": [
+        "callback: Dolor sit",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script2.js"
+      ]
+    }
+  ],
+  "synchronousMode": [
+    {
+      "id": "0-0",
+      "numPostponedEvents": 0,
+      "status": "SUCCESS",
+      "logs": [
+        "callback: Lorem ipsum",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script1.js"
+      ]
+    },
+    {
+      "id": "0-1",
+      "numPostponedEvents": 0,
+      "status": "SUCCESS",
+      "logs": [
+        "callback: Lorem ipsum",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script1.js",
+        "callback: Dolor sit",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script2.js"
+      ]
+    },
+    {
+      "id": "1-0",
+      "numPostponedEvents": 0,
+      "status": "SUCCESS",
+      "logs": [
+        "callback: Dolor sit",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script2.js",
+        "callback: Lorem ipsum",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script1.js"
+      ]
+    },
+    {
+      "id": "1-1",
+      "numPostponedEvents": 0,
+      "status": "SUCCESS",
+      "logs": [
+        "callback: Dolor sit",
+        "onload: http://localhost:8080/test/jsonp_nondeterministic_ui/script2.js"
+      ]
+    }
+  ]
+}

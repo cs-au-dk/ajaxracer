@@ -1,0 +1,221 @@
+<h3>Conflicting User Event Listeners</h3>
+<p>There is/are {{getTestFailures().length}} test failure(s). Click on one of the {{getTests().length}} row(s) below to show more information about that particular test.</p>
+<table class="table table-striped" *ngIf="benchmark">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User Event A</th>
+      <th>User Event B</th>
+      <th>Postponed Events</th>
+      <!-- <th class="text-center">Actual</th> -->
+      <!-- <th class="text-center">Expected</th> -->
+      <!-- <th class="text-center">Difference</th> -->
+      <th class="text-center">Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let testResult of benchmark.testResults">
+      <tr class="clickable"
+          routerLink="{{isTestResultSelected(testResult) ? '/benchmark/' + benchmark.id + '/phase-2' : getRouteFor(testResult, 'event-graphs')}}"
+          (click)="toggleTestResult(testResult)"
+          [ngClass]="{ 'invisible': isOtherTestResultSelected(testResult) }">
+        <td class="user-event-listener">
+          {{testResult.userEventListener1}}-{{testResult.userEventListener2}}
+        </td>
+        <td class="user-event-listener">
+          {{getDescription(testResult.userEventListener1)}}
+        </td>
+        <td class="user-event-listener">
+          {{getDescription(testResult.userEventListener2)}}
+        </td>
+        <td class="user-event-listener">
+          {{getNumPostponedEvents(testResult)}}
+        </td>
+        <td class="text-center" [ngSwitch]="testResult.succeeded">
+          <strong class="text-success" *ngSwitchCase="true">
+            SUCCESS
+            <span *ngIf="testResult.pixelIgnored">(pixel ignored)</span>
+          </strong>
+          <strong class="text-danger" *ngSwitchCase="false">FAIL</strong>
+          <span *ngSwitchDefault>N/A</span>
+        </td>
+      </tr>
+
+      <ng-container *ngIf="isTestResultSelected(testResult)">
+        <!-- Empty row to preserve stripe coloring. -->
+        <tr></tr>
+
+        <tr>
+          <td colspan="5">
+            <div class="row">
+              <div class="col-md-2">
+                <ul class="list-group activatable">
+                  <li class="list-group-item"
+                      [ngClass]="{
+                        'active': getView(testResult) == 'event-graphs',
+                        'inactive': getView(testResult) != 'event-graphs'}"
+                      routerLink="{{getRouteFor(testResult, 'event-graphs')}}"
+                      (click)="selectView(testResult, 'event-graphs')">
+                    Event Graphs
+                  </li>
+                  <li class="list-group-item"
+                      [ngClass]="{
+                        'active': getView(testResult) == 'actual',
+                        'inactive': getView(testResult) != 'actual'}"
+                      routerLink="{{getRouteFor(testResult, 'actual')}}"
+                      (click)="selectView(testResult, 'actual');">
+                    Actual
+                  </li>
+                  <li class="list-group-item"
+                      [ngClass]="{
+                        'active': getView(testResult) == 'expected',
+                        'inactive': getView(testResult) != 'expected'}"
+                      routerLink="{{getRouteFor(testResult, 'expected')}}"
+                      (click)="selectView(testResult, 'expected')">
+                    Expected
+                  </li>
+                  <li class="list-group-item"
+                      *ngIf="testResult.diff != null"
+                      [ngClass]="{
+                        'active': getView(testResult) == 'difference',
+                        'inactive': getView(testResult) != 'difference'}"
+                      routerLink="{{getRouteFor(testResult, 'difference')}}"
+                      (click)="selectView(testResult, 'difference')">
+                    Difference
+                  </li>
+                </ul>
+
+                <ul class="list-group activatable">
+                  <li class="list-group-item inactive"
+                      routerLink="{{isTestResultSelected(testResult) ? '/benchmark/' + benchmark.id + '/phase-2' : getRouteFor(testResult, 'event-graphs')}}"
+                      (click)="toggleTestResult(testResult)">
+                    Back
+                  </li>
+                </ul>
+              </div>
+
+              <ng-container [ngSwitch]="getView(testResult)">
+                <ng-container *ngSwitchCase="'event-graphs'">
+                  <div class="col-md-5">
+                    <a [href]="benchmarkService.getAbsoluteURL(getUserEventListener(testResult.userEventListener1).eventGraphURLs.actionsOnly)" target="_blank">
+                      <img [src]="benchmarkService.getAbsoluteURL(getUserEventListener(testResult.userEventListener1).eventGraphURLs.actionsOnly)" />
+                    </a>
+                  </div>
+                  <div class="col-md-5">
+                    <a [href]="benchmarkService.getAbsoluteURL(getUserEventListener(testResult.userEventListener2).eventGraphURLs.actionsOnly)" target="_blank">
+                      <img [src]="benchmarkService.getAbsoluteURL(getUserEventListener(testResult.userEventListener2).eventGraphURLs.actionsOnly)" />
+                    </a>
+                  </div>
+                </ng-container>
+
+                <div class="col-md-10" *ngSwitchCase="'actual'">
+                  <div class="btn-group btn-group-justified with-margin" role="group">
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn"
+                              [ngClass]="{
+                                'active': getSelectedTab(testResult, 'actual') == 'first',
+                                'inactive': getSelectedTab(testResult, 'actual') != 'first' }"
+                              routerLink="{{getRouteFor(testResult, 'actual', 'first')}}"
+                              (click)="selectTab(testResult, 'actual', 'first')">
+                        Before event A
+                      </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn"
+                              [ngClass]="{
+                                'active': getSelectedTab(testResult, 'actual') == 'second',
+                                'inactive': getSelectedTab(testResult, 'actual') != 'second' }"
+                              routerLink="{{getRouteFor(testResult, 'actual', 'second')}}"
+                              (click)="selectTab(testResult, 'actual', 'second')">
+                        Partially after event A, before event B
+                      </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn active"
+                              [ngClass]="{
+                                'active': getSelectedTab(testResult, 'actual') == 'third',
+                                'inactive': getSelectedTab(testResult, 'actual') != 'third' }"
+                              routerLink="{{getRouteFor(testResult, 'actual', 'third')}}"
+                              (click)="selectTab(testResult, 'actual', 'third')">
+                        After event B
+                      </button>
+                    </div>
+                  </div>
+
+                  <ng-container [ngSwitch]="getSelectedTab(testResult, 'actual')">
+                    <div *ngSwitchCase="'first'">
+                      <p>The following image shows the web page after it has been fully loaded, but before any user events have been triggered. The DOM element that has been highlighted is the one that <span class="toolname">AjaxRacer</span> is going to click on next.</p>
+                      <img [src]="benchmarkService.getAbsoluteURL(testResult.actual.screenshotURLs.before)" />
+                    </div>
+                    <div *ngSwitchCase="'second'">
+                      <p>The following image shows the web page after the first user event has been triggered, and all of the events generated (directly or indirectly) by the user event handler(s) of this user event have finished, <i>except for all Ajax response events</i>. The DOM element that has been highlighted is the one that <span class="toolname">AjaxRacer</span> is going to click on next.</p>
+                      <img [src]="benchmarkService.getAbsoluteURL(testResult.actual.screenshotURLs.intermediate)" />
+                    </div>
+                    <div *ngSwitchCase="'third'">
+                      <p>The following image shows the web page after the two user events, and all of the events generated (directly or indirectly) from the user event handlers of these events, have finished.</p>
+                      <img [src]="benchmarkService.getAbsoluteURL(testResult.actual.screenshotURLs.final)" />
+                    </div>
+                  </ng-container>
+                </div>
+
+                <div class="col-md-10" *ngSwitchCase="'expected'">
+                  <div class="btn-group btn-group-justified with-margin" role="group">
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn"
+                              [ngClass]="{
+                                'active': getSelectedTab(testResult, 'expected') == 'first',
+                                'inactive': getSelectedTab(testResult, 'expected') != 'first' }"
+                              routerLink="{{getRouteFor(testResult, 'expected', 'first')}}"
+                              (click)="selectTab(testResult, 'expected', 'first')">
+                        Before event A
+                      </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn"
+                              [ngClass]="{
+                                'active': getSelectedTab(testResult, 'expected') == 'second',
+                                'inactive': getSelectedTab(testResult, 'expected') != 'second' }"
+                              routerLink="{{getRouteFor(testResult, 'expected', 'second')}}"
+                              (click)="selectTab(testResult, 'expected', 'second')">
+                        After event A, before event B
+                      </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn active"
+                              [ngClass]="{
+                                'active': getSelectedTab(testResult, 'expected') == 'third',
+                                'inactive': getSelectedTab(testResult, 'expected') != 'third' }"
+                              routerLink="{{getRouteFor(testResult, 'expected', 'third')}}"
+                              (click)="selectTab(testResult, 'expected', 'third')">
+                        After event B
+                      </button>
+                    </div>
+                  </div>
+
+                  <ng-container [ngSwitch]="getSelectedTab(testResult, 'expected')">
+                    <div *ngSwitchCase="'first'">
+                      <p>The following image shows the web page after it has been fully loaded, but before any user events have been triggered. The DOM element that has been highlighted is the one that <span class="toolname">AjaxRacer</span> is going to click on next.</p>
+                      <img [src]="benchmarkService.getAbsoluteURL(testResult.expected.screenshotURLs.before)" />
+                    </div>
+                    <div *ngSwitchCase="'second'">
+                      <p>The following image shows the web page after the first event has been triggered, and all of the events generated (directly or indirectly) by the event handlers of this event have finished. The DOM element that has been highlighted is the one that <span class="toolname">AjaxRacer</span> is going to click on next.</p>
+                      <img [src]="benchmarkService.getAbsoluteURL(testResult.expected.screenshotURLs.intermediate)" />
+                    </div>
+                    <div *ngSwitchCase="'third'">
+                      <p>The following image shows the web page after the two user events, and all of the events generated (directly or indirectly) from the user event handlers of these events, have finished.</p>
+                      <img [src]="benchmarkService.getAbsoluteURL(testResult.expected.screenshotURLs.final)" />
+                    </div>
+                  </ng-container>
+                </div>
+
+                <div class="col-md-10" *ngSwitchCase="'difference'">
+                  <img [src]="benchmarkService.getAbsoluteURL(testResult.diff)" />
+                </div>
+              </ng-container>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </ng-container>
+  </tbody>
+</table>

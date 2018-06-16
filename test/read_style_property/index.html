@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <script>
+      var o1 = {
+        style: function () {
+          return this;
+        }
+      };
+      o1.style().style();
+
+      var o2 = {
+        style: 'abc'
+      };
+
+      if (o2.style.length !== 3) {
+        throw new Error('Unexpected length');
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+    var o = {x: 42};
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      function sendAjax(callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://casa.au.dk/', /*async=*/true);
+        xhr.send(null);
+
+        xhr.onerror = callback;
+      }
+
+      function updateUI() {
+        container.innerHTML = 'Lorem ipsum.';
+      }
+
+      // The LoadMonitor should understand that the page has not finished
+      // loading until the variable `loaded` has been set to true.
+      var loaded = false;
+      sendAjax(function () {
+        loaded = true;
+      });
+
+      button.addEventListener('click', function () {
+        // If LoadMonitor has not waited for the relevant timers to fire,
+        // then `loaded` is going to be false, and then the test fails.
+        if (loaded) {
+          updateUI();
+        }
+      }, false);
+    </script>
+  </body>
+</html>

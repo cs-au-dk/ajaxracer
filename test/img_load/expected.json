@@ -1,0 +1,34 @@
+{
+  "observationMode": {
+    "userEventListeners": [
+      {
+        "userEventListener": {
+          "selector": "html > body > button#button",
+          "staticId": "static-element-4",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "fork",
+            "kind": "load-img",
+            "u": 0,
+            "v": 1,
+            "url": "http://localhost:8080/test/img_load/image.png"
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 350,
+              "height": 159
+            },
+            "u": 1
+          }
+        ]
+      }
+    ],
+    "logs": []
+  }
+}

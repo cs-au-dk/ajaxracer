@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">A</button>
+    <button id="button2">B</button>
+    <button id="button3">C</button>
+    <button id="button4">D</button>
+    <button id="button5">E</button>
+    <!-- <button id="button6">F</button> -->
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+      var button2 = document.getElementById('button2');
+      var button3 = document.getElementById('button3');
+      var button4 = document.getElementById('button4');
+      var button5 = document.getElementById('button5');
+      // var button6 = document.getElementById('button6');
+
+      function updateUI(text) {
+        container.innerHTML = text;
+      }
+
+      eval(
+        'button.onclick = function () {' +
+          'window.setTimeout(function () { updateUI(\'A\'); }, 1000);' +
+        '};'
+      );
+
+      var alias = eval;
+      alias(
+        'button2.onclick = function () {' +
+          'window.setTimeout(function () { updateUI(\'B\'); }, 1000);' +
+        '};'
+      );
+
+      eval.call(
+        window,
+        'button3.onclick = function () {' +
+          'window.setTimeout(function () { updateUI(\'C\'); }, 1000);' +
+        '};'
+      );
+
+      eval.apply(window, [
+        'button4.onclick = function () {' +
+          'window.setTimeout(function () { updateUI(\'D\'); }, 1000);' +
+        '};'
+      ]);
+
+      new Function(
+        'button5.onclick = function () {' +
+          'window.setTimeout(function () { updateUI(\'E\'); }, 1000);' +
+        '};'
+      )();
+
+      // TODO: Not supported.
+      /*
+      document.write(
+        '<script>' +
+        'button6.onclick = function () {' +
+          'window.setTimeout(function () { updateUI(\'F\'); }, 1000);' +
+        '};' +
+        '</scr' + 'ipt>'
+      );
+      */
+    </script>
+  </body>
+</html>

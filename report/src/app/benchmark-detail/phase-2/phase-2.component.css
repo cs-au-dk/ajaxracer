@@ -1,0 +1,49 @@
+/* Table. */
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background: #434857;
+}
+
+.table-striped tbody tr:nth-of-type(odd) ul.list-group li.list-group-item {
+  background: #252830;
+}
+
+.table-striped tbody tr:nth-of-type(odd) div.btn-group button {
+  background: #252830;
+}
+
+th {
+  color: #1997c6;
+}
+
+tr td {
+  border: none;
+  vertical-align: middle;
+}
+
+tr td.user-event-listener {
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+tr td.result {
+  font-weight: bold;
+}
+
+tbody tr.invisible {
+  display: none;
+}
+
+tbody tr.clickable:hover {
+  background: #1997c6 !important;
+  cursor: pointer;
+}
+
+table tr.clickable img {
+  margin: 5px;
+  width: 200px;
+}
+
+.with-margin {
+  margin-bottom: 10px;
+}

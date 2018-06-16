@@ -1,0 +1,32 @@
+/* Table. */
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background: #434857;
+}
+
+th {
+  color: #1997c6;
+}
+
+tr td {
+  border: none;
+  vertical-align: middle;
+}
+
+.table-metadata {
+  table-layout: fixed;
+}
+
+.table-metadata tr td {
+  word-wrap: break-word;
+}
+
+.table-metadata tr th:first-child, .table-metadata tr td:first-child {
+  white-space: nowrap;
+  width: 75px;
+}
+
+.table-metadata tr th:nth-child(2), .table-metadata tr td:nth-child(2) {
+  white-space: nowrap;
+  width: 95px;
+}

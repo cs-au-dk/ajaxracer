@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <script>
+      function foo() {
+        document.getElementById("container").innerHTML = "Lorem ipsum.";
+      }
+    </script>
+    <script src="script.js" onload="foo()" async></script>
+  </body>
+</html>

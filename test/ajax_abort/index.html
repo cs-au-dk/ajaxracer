@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <button id="button2">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+      var button2 = document.getElementById('button2');
+
+      var activeXHR = null;
+      var counter = 1;
+
+      function updateUI(url) {
+        if (activeXHR) {
+          activeXHR.abort();
+        }
+
+        var xhr = activeXHR = new XMLHttpRequest();
+        xhr.open('GET', url, /*async=*/true);
+        xhr.send(null);
+
+        xhr.onabort = function () {
+          console.warn(counter++ + ': XHR aborted');
+        };
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            console.warn(counter++ + ': Writing ' + xhr.responseText.trim());
+            container.innerHTML = xhr.responseText;
+            activeXHR = null;
+          }
+        };
+      }
+
+      button.addEventListener('click', function () {
+        updateUI('data.txt');
+      }, false);
+
+      button2.addEventListener('click', function () {
+        updateUI('data2.txt');
+      }, false);
+    </script>
+  </body>
+</html>

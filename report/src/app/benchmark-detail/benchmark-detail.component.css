@@ -1,0 +1,5 @@
+ul.nav-tabs { border-bottom: 1px solid #434857; }
+ul.nav-tabs li a { border: none; font-weight: bold; }
+ul.nav-tabs li.active a { background: #1997c6; color: white; }
+ul.nav-tabs li.inactive a:hover { background: #434857; }
+

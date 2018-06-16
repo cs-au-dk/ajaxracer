@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      var counter = 1;
+
+      function updateUI(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, /*async=*/true);
+        xhr.send(null);
+
+        xhr.onabort = function () {
+          console.warn(counter++ + ': XHR aborted');
+          container.innerHTML = 'XHR abort';
+        };
+
+        xhr.abort();
+
+        xhr.onreadystatechange = function () {
+          console.warn(counter++ + ': XHR onreadystatechange');
+        };
+      }
+
+      button.addEventListener('click', function () {
+        updateUI('data.txt');
+      }, false);
+    </script>
+  </body>
+</html>

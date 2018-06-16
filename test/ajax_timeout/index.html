@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      function updateUI(url, timeout) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, /*async=*/true);
+        xhr.send(null);
+        xhr.timeout = timeout;
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            container.innerHTML = xhr.responseText;
+          }
+        };
+
+        xhr.ontimeout = function () {
+          throw new Error('Timeout');
+        };
+      }
+
+      button.addEventListener('click', function () {
+        updateUI('data.txt', 5);
+      }, false);
+    </script>
+  </body>
+</html>

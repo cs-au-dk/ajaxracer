@@ -1,0 +1,108 @@
+{
+  "observationMode": {
+    "userEventListeners": [
+      {
+        "userEventListener": {
+          "selector": "html > body > button#button",
+          "staticId": "static-element-4",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 36
+            },
+            "u": 0
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 36
+            },
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "ajax-request",
+            "u": 0,
+            "v": 1,
+            "method": "GET",
+            "url": "https://www.google.com/"
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-done",
+            "u": 1,
+            "v": 0
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 36
+            },
+            "u": 1
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 36
+            },
+            "u": 1
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-error",
+            "u": 2,
+            "v": 1
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 36
+            },
+            "u": 2
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 36
+            },
+            "u": 2
+          }
+        ]
+      }
+    ],
+    "logs": [
+      "No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8080' is therefore not allowed access"
+    ]
+  }
+}

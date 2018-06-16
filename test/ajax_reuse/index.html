@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <button id="button2">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+      var button2 = document.getElementById('button2');
+
+      var xhr = new XMLHttpRequest();
+      var xhrIsBusy = false;
+
+      function updateUI(url) {
+        if (xhrIsBusy) {
+          return window.setTimeout(() => updateUI(url), 1000);
+        }
+
+        xhrIsBusy = true;
+
+        xhr.open('GET', url, /*async=*/true);
+        xhr.send(null);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            container.innerHTML = xhr.responseText;
+            xhrIsBusy = false;
+          }
+        };
+      }
+
+      button.addEventListener('click', function () {
+        updateUI('data.txt');
+      }, false);
+
+      button2.addEventListener('click', function () {
+        updateUI('data2.txt');
+      }, false);
+    </script>
+  </body>
+</html>

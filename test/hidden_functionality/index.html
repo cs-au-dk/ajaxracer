@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <div id="container2" style="display: none">
+      <button id="button2">Button</button>
+      <button id="button3">Button</button>
+    </div>
+    <script>
+      var container = document.getElementById('container');
+      var container2 = document.getElementById('container2');
+      var button = document.getElementById('button');
+      var button2 = document.getElementById('button2');
+      var button3 = document.getElementById('button3');
+
+      function updateUI(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, /*async=*/true);
+        xhr.send(null);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            container.innerHTML = xhr.responseText;
+          }
+        };
+      }
+
+      button.addEventListener('click', function () {
+        container2.style.display = 'block';
+      }, false);
+
+      button2.addEventListener('click', function () {
+        updateUI('data.txt');
+      }, false);
+
+      button3.addEventListener('click', function () {
+        updateUI('data2.txt');
+      }, false);
+    </script>
+  </body>
+</html>

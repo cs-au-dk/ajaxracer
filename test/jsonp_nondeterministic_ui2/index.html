@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <button id="button2">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+      var button2 = document.getElementById('button2');
+
+      function callback(text) {
+        console.warn('callback: ' + text);
+        container.innerHTML = text;
+      }
+
+      function loadScript(src) {
+        var script = document.createElement('script');
+        script.src = src;
+        container.appendChild(script);
+        script.addEventListener('load', function () {
+          console.warn('onload: ' + this.src);
+        }, false);
+      }
+
+      button.addEventListener('click', function () {
+        loadScript('script1.js');
+      }, false);
+
+      button2.addEventListener('click', function () {
+        loadScript('script2.js');
+      }, false);
+    </script>
+  </body>
+</html>

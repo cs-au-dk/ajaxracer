@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+    <style>
+    #container .row { display: none; }
+    #container.show .row { display: block; }
+    </style>
+  </head>
+  <body>
+    <div id="container" style="width: 100px">
+      <div class="row">
+        Lorem ipsum.
+      </div>
+    </div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      button.addEventListener('click', function () {
+        container.className = 'show';
+      }, false);
+    </script>
+  </body>
+</html>

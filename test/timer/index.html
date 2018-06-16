@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      function updateUI() {
+        container.innerHTML = 'Lorem ipsum.';
+      }
+
+      button.addEventListener('click', function () {
+        window.setTimeout(updateUI, 1000);
+
+        // The EventMonitor should not wait for cancelled timeouts.
+        window.clearTimeout(window.setTimeout(function () {}, 50));
+      }, false);
+    </script>
+  </body>
+</html>

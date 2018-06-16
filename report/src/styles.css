@@ -1,0 +1,77 @@
+body {
+  background: #252830;
+  color: #cfd2da;
+  font-family: Raleway;
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+h1, h2, h3 {
+  color: #ffffff;
+}
+
+a {
+  color: #cfd2da;
+}
+
+a:hover {
+  color: #1997c6;
+  text-decoration: none;
+}
+
+span.toolname {
+  font-variant: small-caps;
+}
+
+img { max-width: 100%; }
+
+/* List groups. */
+
+ul.list-group li.list-group-item {
+  background: #434857;
+  border: none;
+  cursor: pointer;
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+ul.list-group.activatable li.list-group-item.active {
+  background: #1997c6 !important;
+  color: #ffffff;
+}
+
+ul.list-group.inactivatable li.list-group-item.inactive:hover {
+  background: #1997c6 !important;
+  color: #ffffff;
+}
+
+ul.list-group.activatable li.list-group-item.inactive:hover {
+  color: #1997c6;
+}
+
+ul.list-group li.list-group-item span.remove {
+  background: #d9534f;
+}
+
+/* Button groups. */
+
+div.btn-group button {
+  background: #434857;
+  border: none;
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+div.btn-group button:focus {
+  outline: none !important;
+}
+
+div.btn-group button.active {
+  background: #1997c6 !important;
+  color: #ffffff;
+}
+
+
+div.btn-group button.inactive:hover {
+  color: #1997c6;
+}

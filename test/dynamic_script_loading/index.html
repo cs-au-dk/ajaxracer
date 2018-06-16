@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var button = document.getElementById('button');
+
+      button.addEventListener('click', function () {
+        var script = document.createElement('script');
+        script.src = 'script.js';
+        script.type = 'text/javascript';
+        document.head.appendChild(script);
+      }, false);
+    </script>
+  </body>
+</html>

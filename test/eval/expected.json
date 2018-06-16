@@ -1,0 +1,206 @@
+{
+  "observationMode": {
+    "userEventListeners": [
+      {
+        "userEventListener": {
+          "staticId": "static-element-4",
+          "selector": "html > body > button#button",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "timer",
+            "u": 0,
+            "v": 1,
+            "delay": 1000
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          }
+        ]
+      },
+      {
+        "userEventListener": {
+          "staticId": "static-element-5",
+          "selector": "html > body > button#button2",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "timer",
+            "u": 0,
+            "v": 1,
+            "delay": 1000
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          }
+        ]
+      },
+      {
+        "userEventListener": {
+          "staticId": "static-element-6",
+          "selector": "html > body > button#button3",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "timer",
+            "u": 0,
+            "v": 1,
+            "delay": 1000
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          }
+        ]
+      },
+      {
+        "userEventListener": {
+          "staticId": "static-element-7",
+          "selector": "html > body > button#button4",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "timer",
+            "u": 0,
+            "v": 1,
+            "delay": 1000
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          }
+        ]
+      },
+      {
+        "userEventListener": {
+          "staticId": "static-element-8",
+          "selector": "html > body > button#button5",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "timer",
+            "u": 0,
+            "v": 1,
+            "delay": 1000
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 1
+          }
+        ]
+      }
+    ],
+    "logs": []
+  }
+}

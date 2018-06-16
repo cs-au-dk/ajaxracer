@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <div id="container" style="width: 100px"></div>
+    <button id="button">Button</button>
+    <script>
+      var container = document.getElementById('container');
+      var button = document.getElementById('button');
+
+      function updateUI() {
+        container.innerHTML = 'Lorem ipsum.';
+      }
+
+      // The LoadMonitor should understand that the page has not finished
+      // loading until the variable `loaded` has been set to true.
+      var loaded = false;
+      var numCalls = 0;
+      var intervalId = window.setInterval(function () {
+        if (++numCalls == 3) {
+          loaded = true;
+          window.clearInterval(intervalId);
+        }
+      }, 1000);
+
+      button.addEventListener('click', function () {
+        // If LoadMonitor has not waited for the relevant timers to fire,
+        // then `loaded` is going to be false, and then the test fails.
+        if (loaded) {
+          updateUI();
+        }
+      }, false);
+    </script>
+  </body>
+</html>

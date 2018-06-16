@@ -1,0 +1,206 @@
+{
+  "observationMode": {
+    "userEventListeners": [
+      {
+        "userEventListener": {
+          "staticId": "static-element-4",
+          "selector": "html > body > button#button",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container2",
+            "area": {
+              "x": 8,
+              "y": 27,
+              "width": 1584,
+              "height": 19
+            },
+            "u": 0
+          }
+        ]
+      },
+      {
+        "userEventListener": {
+          "staticId": "static-element-5",
+          "selector": "html > body > div#container2 > button#button2",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "ajax-request",
+            "u": 0,
+            "v": 1,
+            "method": "GET",
+            "url": "http://localhost:8080/test/hidden_functionality/data.txt"
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-headers-received",
+            "u": 1,
+            "v": 0
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-loading",
+            "u": 2,
+            "v": 1
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-done",
+            "u": 3,
+            "v": 2
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 3
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-loaded",
+            "u": 4,
+            "v": 3
+          }
+        ]
+      },
+      {
+        "userEventListener": {
+          "staticId": "static-element-6",
+          "selector": "html > body > div#container2 > button#button3",
+          "type": "click"
+        },
+        "trace": [
+          {
+            "operation": "root",
+            "u": 0
+          },
+          {
+            "operation": "fork",
+            "kind": "ajax-request",
+            "u": 0,
+            "v": 1,
+            "method": "GET",
+            "url": "http://localhost:8080/test/hidden_functionality/data2.txt"
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-headers-received",
+            "u": 1,
+            "v": 0
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-loading",
+            "u": 2,
+            "v": 1
+          },
+          {
+            "operation": "join",
+            "kind": "ajax-done",
+            "u": 3,
+            "v": 2
+          },
+          {
+            "operation": "mutate-dom",
+            "element": "html > body > div#container",
+            "area": {
+              "x": 8,
+              "y": 8,
+              "width": 100,
+              "height": 18
+            },
+            "u": 3
+          },
+        {
+          "operation": "mutate-dom",
+          "element": "html > body > div#container",
+          "area": {
+            "x": 8,
+            "y": 8,
+            "width": 100,
+            "height": 18
+          },
+          "u": 3
+        },
+          {
+            "operation": "join",
+            "kind": "ajax-loaded",
+            "u": 4,
+            "v": 3
+          }
+        ]
+      }
+    ],
+    "logs": []
+  },
+  "adverseMode": [
+    {
+      "id": "1-1",
+      "status": "FAIL",
+      "error": "Failed to execute first user event listener",
+      "logs": ["Failed to execute first user event listener"]
+    },
+    {
+      "id": "1-2",
+      "status": "FAIL",
+      "error": "Failed to execute first user event listener",
+      "logs": ["Failed to execute first user event listener"]
+    },
+    {
+      "id": "2-1",
+      "status": "FAIL",
+      "error": "Failed to execute first user event listener",
+      "logs": ["Failed to execute first user event listener"]
+    },
+    {
+      "id": "2-2",
+      "status": "FAIL",
+      "error": "Failed to execute first user event listener",
+      "logs": ["Failed to execute first user event listener"]
+    }
+  ],
+  "synchronousMode": [
+    {
+      "id": "1-1",
+      "status": "FAIL",
+      "error": "Failed to execute first user event listener",
+      "logs": ["Failed to execute first user event listener"]
+    },
+    {
+      "id": "1-2",
+      "status": "FAIL",
+      "error": "Failed to execute first user event listener",
+      "logs": ["Failed to execute first user event listener"]
+    },
+    {
+      "id": "2-1",
+      "status": "FAIL",
+      "error": "Failed to execute first user event listener",
+      "logs": ["Failed to execute first user event listener"]
+    },
+    {
+      "id": "2-2",
+      "status": "FAIL",
+      "error": "Failed to execute first user event listener",
+      "logs": ["Failed to execute first user event listener"]
+    }
+  ]
+}
