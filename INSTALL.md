@@ -1,6 +1,6 @@
 # AjaxRacer: Install Instructions
 
-*The following install instructions have been tested on Ubuntu 14.04.5. A VM where AjaxRacer and all of its dependencies have been installed is provided at <http://google.com/>.*
+*The following install instructions have been tested on Ubuntu 14.04.5. A VM where AjaxRacer and all of its dependencies have been installed is provided at <https://drive.google.com/open?id=1CP65UsDGsLc5t7S0mlGaALPyTzn_vBwv>.*
 
 ## Prerequisites
 
@@ -47,9 +47,9 @@ sudo webdriver-manager update
 ```
 
 
-### mitmproxy v0.17.1
+### mitmproxy v0.17
 
-1) Install mitmproxy v0.17.1:
+1) Install mitmproxy v0.17:
 
    ```
    sudo apt install python-pip python-dev libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev
@@ -57,7 +57,7 @@ sudo webdriver-manager update
    sudo pip install mitmproxy==0.17
    ```
 
-   *Troubleshooting*: If the last command fails with an error, try to reinstall Python 2.7 (this should remove these packages):
+   *Troubleshooting*: If the last command fails with an error, try to reinstall Python 2.7 (this should remove some packages that will be installed with mitmproxy):
 
    ```
    sudo apt remove python-2.7
@@ -83,7 +83,7 @@ sudo webdriver-manager update
       sudo update-ca-certificates
       ```
 
-   E. Test that the mitmproxy certificate is installed correctly by repeating running the following command.
+   E. Test that the mitmproxy certificate is installed correctly by running the following command.
 
       `google-chrome-stable https://github.com/cs-au-dk/ajaxracer --proxy-server="127.0.0.1:8080"`
 
