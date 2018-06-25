@@ -20,7 +20,7 @@ Note:
 
 * The argument passed to the `--run-id` option is simply an identifier for the run. It merely specifies which directory that should be used for the output and does not need to be unique. In this case, the result of the run is stored in the `out/test/` directory.
 
-* The URL is automatically converted to <http://localhost:8080/test/observation_mode_tests/nondeterministic_ui_ajax/index.html> as the path points to a test on the disk (AjaxRacer starts an HTTP server on port 8080 on its own).
+* The URL is automatically converted to <http://localhost:8080/test/ajax_nondeterministic_ui/index.html> as the path points to a test on the disk (AjaxRacer starts an HTTP server on port 8080 on its own).
 
 * By default, AjaxRacer uses a headless instance of Google Chrome. This can be circumvented by passing the flag `--no-headless`. This is mostly intended for testing purposes, though.
 
@@ -75,9 +75,9 @@ AjaxRacer comes with a set of tests in the `test/` directory. These tests can be
 
 `npm test`
 
-To run only tests that matches "nondeterministic_ui_ajax/", one can issue the following command:
+To run only tests that matches "ajax_nondeterministic_ui/", one can issue the following command:
 
-`npm test -- --filter "nondeterministic_ui_ajax/"`
+`npm test -- --filter "ajax_nondeterministic_ui/"`
 
 The traces that result from executing the tests will be output to the `out/` directory, and will be compared to the expected traces, which are stored in `expected.json` files.
 
