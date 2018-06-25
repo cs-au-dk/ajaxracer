@@ -67,6 +67,7 @@ or
 
 `./run-experiments.js --filter apple-customize-macbook`
 
+*Note that AjaxRacer runs on the live versions of the web pages from [1]. As a consequence, it will not necessarily be possible to reproduce the results if some of these web pages change. As of June 2018, some web pages have been redesigned (e.g., <https://www.chevronwithtechron.com/station> used to look like [this](http://ajaxracer.casadev.cs.au.dk/data/chevron-1/result.png), <http://www.fanniemae.com/portal/jsp/search.html> used to look like [this](http://ajaxracer.casadev.cs.au.dk/data/fanniemae-1/result.png)) and others have been updated in a way that affects the results (e.g., the tabs on <https://www.apple.com/accessibility/iphone> no longer use AJAX but instead redirect the user to a different web page).*
 
 ## End-to-end tests
 
