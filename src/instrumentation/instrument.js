@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Copyright 2018 Aarhus University
  *
@@ -13,8 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#!/usr/bin/env node
 
 // External
 var argv = require('yargs')
